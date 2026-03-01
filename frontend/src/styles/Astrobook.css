@@ -1,0 +1,426 @@
+/* ─── Astrobook Page ─── */
+.astrobook-page {
+  min-height: 100vh;
+  background: #060a14;
+  color: #e2e8f0;
+  font-family: 'Raleway', 'Rajdhani', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Starfield background */
+.astrobook-page .astrobook-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 15% 85%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1.5px 1.5px at 45% 45%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 65% 30%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 25% 70%, rgba(255,255,255,0.35), transparent);
+  pointer-events: none;
+}
+
+/* ─── Header ─── */
+.astrobook-page .astrobook-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(6, 10, 20, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.astrobook-page .astrobook-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.astrobook-page .astrobook-header-left h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 0;
+}
+
+.astrobook-page .astrobook-header-left .subtitle {
+  color: #64748b;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+
+.astrobook-page .back-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.2s;
+}
+
+.astrobook-page .back-btn:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border-color: rgba(255,255,255,0.2);
+}
+
+.astrobook-page .astrobook-header-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.astrobook-page .header-action {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #cbd5e1;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.25s;
+}
+
+.astrobook-page .header-action:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.2);
+}
+
+.astrobook-page .header-action.accent {
+  background: rgba(0, 212, 170, 0.12);
+  border-color: rgba(0, 212, 170, 0.3);
+  color: #00d4aa;
+}
+
+.astrobook-page .header-action.accent:hover {
+  background: rgba(0, 212, 170, 0.2);
+}
+
+/* ─── Toolbar ─── */
+.astrobook-page .astrobook-toolbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  flex-wrap: wrap;
+}
+
+.astrobook-page .toolbar-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 0 12px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.astrobook-page .toolbar-search .search-icon {
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+.astrobook-page .toolbar-search input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #e2e8f0;
+  font-size: 0.88rem;
+  padding: 10px 4px;
+  width: 100%;
+  font-family: inherit;
+}
+
+.astrobook-page .toolbar-search input::placeholder {
+  color: #475569;
+}
+
+.astrobook-page .toolbar-filters {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.astrobook-page .filter-chip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #94a3b8;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition: all 0.25s;
+}
+
+.astrobook-page .filter-chip:hover {
+  background: rgba(255,255,255,0.08);
+  color: #cbd5e1;
+}
+
+.astrobook-page .filter-chip.active {
+  background: rgba(0, 212, 170, 0.15);
+  border-color: rgba(0, 212, 170, 0.35);
+  color: #00d4aa;
+}
+
+.astrobook-page .toolbar-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.astrobook-page .toolbar-sort label {
+  color: #64748b;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.astrobook-page .toolbar-sort select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #cbd5e1;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+
+.astrobook-page .toolbar-sort select option {
+  background: #0e1420;
+  color: #e2e8f0;
+}
+
+/* ─── Count ─── */
+.astrobook-page .astrobook-count {
+  position: relative;
+  z-index: 1;
+  padding: 0.6rem 2rem;
+  color: #475569;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+}
+
+/* ─── List ─── */
+.astrobook-page .astrobook-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
+  padding: 0 2rem 3rem;
+}
+
+/* ─── Card ─── */
+.astrobook-page .neo-card {
+  position: relative;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.astrobook-page .neo-card:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.astrobook-page .neo-card.hazardous {
+  border-color: rgba(255, 34, 85, 0.12);
+}
+
+.astrobook-page .neo-card.hazardous:hover {
+  border-color: rgba(255, 34, 85, 0.25);
+  box-shadow: 0 8px 32px rgba(255, 34, 85, 0.08);
+}
+
+.astrobook-page .risk-ribbon {
+  height: 3px;
+  width: 100%;
+}
+
+.astrobook-page .neo-card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.astrobook-page .neo-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.astrobook-page .neo-card-top h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.astrobook-page .risk-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+  background: rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+/* Stats grid */
+.astrobook-page .neo-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.astrobook-page .stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.astrobook-page .stat-item .stat-label {
+  font-size: 0.68rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 500;
+}
+
+.astrobook-page .stat-item .stat-value {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+/* Footer row */
+.astrobook-page .neo-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.astrobook-page .hazard-badge {
+  font-size: 0.72rem;
+  color: #ff4466;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.astrobook-page .view-details {
+  font-size: 0.78rem;
+  color: #00d4aa;
+  font-weight: 600;
+  margin-left: auto;
+  transition: color 0.2s;
+}
+
+.astrobook-page .neo-card:hover .view-details {
+  color: #33eebb;
+}
+
+/* ─── States ─── */
+.astrobook-page .astrobook-loading,
+.astrobook-page .astrobook-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  color: #64748b;
+}
+
+.astrobook-page .spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255,255,255,0.06);
+  border-top-color: #00d4aa;
+  border-radius: 50%;
+  animation: astrobook-spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes astrobook-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .astrobook-page .astrobook-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .astrobook-page .astrobook-header-left {
+    flex-wrap: wrap;
+  }
+
+  .astrobook-page .astrobook-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .astrobook-page .toolbar-search {
+    max-width: none;
+  }
+
+  .astrobook-page .toolbar-filters {
+    flex-wrap: wrap;
+  }
+
+  .astrobook-page .toolbar-sort {
+    margin-left: 0;
+  }
+
+  .astrobook-page .astrobook-list {
+    grid-template-columns: 1fr;
+    padding: 0 1rem 2rem;
+  }
+
+  .astrobook-page .astrobook-count {
+    padding: 0.6rem 1rem;
+  }
+}

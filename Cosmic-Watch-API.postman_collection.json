@@ -1,0 +1,345 @@
+{
+  "info": {
+    "name": "Cosmic Watch - Asteroid Tracker API",
+    "description": "Full-stack API for real-time NEO monitoring and risk analysis",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"astronomer123\",\n  \"email\": \"user@example.com\",\n  \"password\": \"securepassword123\",\n  \"confirmPassword\": \"securepassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Register a new user account"
+          }
+        },
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  var jsonData = pm.response.json();",
+                  "  pm.environment.set('token', jsonData.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"securepassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login and get authentication token"
+          }
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "profile"]
+            },
+            "description": "Get authenticated user's profile"
+          }
+        },
+        {
+          "name": "Update Alert Settings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxDistance\": 0.05,\n  \"minDiameter\": 140,\n  \"enableNotifications\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/settings",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "settings"]
+            },
+            "description": "Update user's alert notification settings"
+          }
+        }
+      ]
+    },
+    {
+      "name": "NEO Feed & Lookup",
+      "item": [
+        {
+          "name": "Fetch NEOs from NASA API",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/neo/fetch",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "fetch"]
+            },
+            "description": "Fetch latest NEO data from NASA and store in database"
+          }
+        },
+        {
+          "name": "Get All NEOs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/neo/list",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "list"]
+            },
+            "description": "Get list of all NEOs with optional filtering"
+          }
+        },
+        {
+          "name": "Get NEOs (Hazardous Only)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/neo/list?hazardous=true",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "list"],
+              "query": [
+                {
+                  "key": "hazardous",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "Get list of potentially hazardous NEOs"
+          }
+        },
+        {
+          "name": "Get NEOs by Risk Level",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/neo/list?riskLevel=CRITICAL",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "list"],
+              "query": [
+                {
+                  "key": "riskLevel",
+                  "value": "CRITICAL"
+                }
+              ]
+            },
+            "description": "Get NEOs filtered by risk level (LOW, MEDIUM, HIGH, CRITICAL)"
+          }
+        },
+        {
+          "name": "Get Specific NEO Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/neo/2000433",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "2000433"]
+            },
+            "description": "Get detailed information about a specific NEO by ID"
+          }
+        },
+        {
+          "name": "Get Upcoming Close Approaches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/neo/upcoming",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "upcoming"]
+            },
+            "description": "Get NEOs with upcoming close approach events"
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Asteroid Management",
+      "item": [
+        {
+          "name": "Watch Asteroid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"neoId\": \"2000433\",\n  \"neoName\": \"Eros\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/neo/watch",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "watch"]
+            },
+            "description": "Add an asteroid to user's watch list"
+          }
+        },
+        {
+          "name": "Get Watched Asteroids",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/neo/watched/all",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "watched", "all"]
+            },
+            "description": "Get all asteroids in user's watch list"
+          }
+        },
+        {
+          "name": "Unwatch Asteroid",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/neo/watch/2000433",
+              "host": ["{{base_url}}"],
+              "path": ["neo", "watch", "2000433"]
+            },
+            "description": "Remove an asteroid from user's watch list"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat & Community",
+      "item": [
+        {
+          "name": "Get Messages for Asteroid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/chat/2000433",
+              "host": ["{{base_url}}"],
+              "path": ["chat", "2000433"]
+            },
+            "description": "Get all discussion messages for a specific asteroid"
+          }
+        },
+        {
+          "name": "Post Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"neoId\": \"2000433\",\n  \"message\": \"This asteroid is fascinating! The orbit is very interesting.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/chat",
+              "host": ["{{base_url}}"],
+              "path": ["chat"]
+            },
+            "description": "Post a new message to asteroid discussion thread"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check if backend service is running"
+      }
+    }
+  ]
+}
