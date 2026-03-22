@@ -1,3 +1,6 @@
+# ⚡️ This project was built during a fast-paced hackathon. The original repository unfortunately crashed, so the project was moved to a new repository specifically for presentation purposes. As a result, the commit history may be sparse and the code was written with a focus on rapid prototyping and functionality over polish. Thank you for understanding the spirit of quick innovation!
+
+
 # 🌌 Cosmic Watch - Interstellar Asteroid Tracker & Risk Analyzer
 
 > **Real-time Near-Earth Object (NEO) monitoring platform with risk analysis, community discussions, and Docker deployment**
@@ -420,4 +423,3 @@ MIT License - Free to use and modify
 
 **Let's explore the cosmos together!**
 
-#
