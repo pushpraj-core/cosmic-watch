@@ -1,4 +1,4 @@
-# ⚡️ Note: This project was built quickly during a hackathon. The original repo crashed, so it was moved here for presentation. Commit history may be sparse.
+⚡️ Note: This project was built quickly during a hackathon. The original repo crashed, so it was moved here for presentation. Commit history may be sparse.
 
 
 # 🌌 Cosmic Watch - Interstellar Asteroid Tracker & Risk Analyzer
